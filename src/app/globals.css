@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: 255 255 255;
+  --fg: 17 24 39;
+  --muted: 107 114 128;
+  --line: 229 231 235;
+  --card: 255 255 255;
+  --primary: 30 58 138;
+  --primary2: 37 99 235;
+  --radius: 10px;
+}
+
+[data-theme="jp"]{
+  --bg: 255 255 255;
+  --fg: 17 24 39;
+  --muted: 55 65 81;
+  --line: 234 234 234;
+  --card: 255 255 255;
+  --primary: 30 58 138;
+  --primary2: 31 75 122;
+  --radius: 10px;
+}
+
+[data-theme="vi"]{
+  --bg: 255 255 255;
+  --fg: 15 23 42;
+  --muted: 71 85 105;
+  --line: 226 232 240;
+  --card: 255 255 255;
+  --primary: 37 99 235;
+  --primary2: 16 185 129;
+  --radius: 14px;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  background: rgb(var(--bg));
+  color: rgb(var(--fg));
+}
+
+a { color: inherit; text-decoration: none; }
+
+::selection {
+  background: rgba(37, 99, 235, 0.18);
+}
