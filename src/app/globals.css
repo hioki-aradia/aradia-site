@@ -2,18 +2,112 @@
 @tailwind components;
 @tailwind utilities;
 
+html,body{height:100%;}
+*{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
+
 :root{
-  --bg: 255 255 255;
-  --fg: 9 9 11;
-  --muted: 113 113 122;
-  --line: 228 228 231;
-  --card: 255 255 255;
-  --primary: 37 99 235;
-  --primary2: 16 185 129;
+  --radius:18px;
 }
 
-html,body{ height:100%; }
-body{
-  background: rgb(var(--bg));
-  color: rgb(var(--fg));
+/* ================= JP ================= */
+[data-theme="jp"]{
+  --bg:246 248 252;
+  --fg:12 16 23;
+  --muted:92 104 120;
+  --card:255 255 255;
+  --line:224 231 242;
+  --primary:18 42 84;
 }
+
+/* ================= VI：若い/家族的/技術/団結（白すぎ禁止） ================= */
+[data-theme="vi"]{
+  --bg:236 242 255;          /* 白ではなく “青みのある明るさ” */
+  --fg:16 22 38;
+  --muted:96 112 140;
+
+  --card:245 248 255;        /* 純白カードをやめて、少し色を入れる */
+  --line:205 216 240;
+
+  --primary:52 105 220;      /* 知的ブルー（強すぎない） */
+  --primary2:66 190 170;     /* “団結/成長”のティール（ネオン禁止） */
+  --warm:255 199 140;        /* “家族的”の温度（ごく薄く使う） */
+}
+
+/* layout background */
+.page-bg{
+  position:relative;
+  min-height:100%;
+  isolation:isolate;
+}
+
+/* VI背景：白基調に見えない“空気”を作る（色面＋軽い模様） */
+[data-theme="vi"] .page-bg{
+  background:
+    radial-gradient(900px 520px at 18% -12%, rgba(52,105,220,0.26), transparent 62%),
+    radial-gradient(760px 460px at 86% 6%, rgba(66,190,170,0.20), transparent 60%),
+    radial-gradient(640px 420px at 62% 110%, rgba(255,199,140,0.10), transparent 60%),
+    linear-gradient(180deg, #eaf0ff 0%, #f3f7ff 55%, #eef5ff 100%);
+}
+
+/* “団結感”＝軽いパターン（ドット）でチームの空気を出す */
+[data-theme="vi"] .page-bg:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+  background:
+    radial-gradient(circle at 12px 12px, rgba(52,105,220,0.10) 1px, transparent 2px);
+  background-size: 24px 24px;
+  opacity:0.22;
+}
+
+/* コンテンツは上 */
+.page-bg > *{ position:relative; z-index:1; }
+
+/* Cards：ガラス/高級ではなく“現場の安心感” */
+.card{
+  background:rgb(var(--card));
+  border:1px solid rgb(var(--line));
+  border-radius:var(--radius);
+  box-shadow: 0 18px 46px rgba(18,30,60,0.14);
+}
+
+/* VIは角丸と影を少し強めて、親しみ＋まとまり */
+[data-theme="vi"] .card{
+  border-color: rgba(24,40,80,0.12);
+  box-shadow:
+    0 26px 70px rgba(18,30,60,0.16),
+    0 10px 22px rgba(0,0,0,0.06);
+}
+
+/* Buttons：ネオン禁止、でも“若さ”は出す（2色グラデを控えめに） */
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  border-radius: 14px;
+  padding: 12px 18px;
+  font-weight: 750;
+}
+
+.btn-primary{
+  color:white;
+  background: rgb(var(--primary));
+  box-shadow: 0 16px 40px rgba(18,30,60,0.18);
+}
+
+[data-theme="vi"] .btn-primary{
+  background: linear-gradient(135deg, rgba(52,105,220,1), rgba(66,190,170,1));
+  box-shadow: 0 18px 46px rgba(52,105,220,0.20);
+}
+
+.btn-ghost{
+  color: rgb(var(--fg));
+  background: rgba(245,248,255,0.85);
+  border: 1px solid rgba(24,40,80,0.12);
+}
+
+.text-muted{ color: rgb(var(--muted)); }
+.border-line{ border-color: rgb(var(--line)); }
+.bg-card{ background: rgb(var(--card)); }

@@ -15,7 +15,7 @@ export function CTA({
   return (
     <section className="py-16">
       <Container>
-        <div className="rounded-xl border border-line bg-card p-10 shadow-soft">
+        <div className="card p-10">
           <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
             <div>
               <h3 className="text-xl font-semibold md:text-2xl">{title}</h3>

@@ -3,12 +3,6 @@ import { ReactNode } from "react";
 
 type Variant = "primary" | "ghost";
 
-function classes(variant: Variant) {
-  return variant === "primary"
-    ? "inline-flex items-center justify-center rounded-xl bg-primary px-5 py-3 text-sm font-semibold text-white shadow-soft transition hover:opacity-95 active:opacity-90"
-    : "inline-flex items-center justify-center rounded-xl border border-line bg-transparent px-5 py-3 text-sm font-semibold text-fg transition hover:bg-black/5 active:bg-black/10";
-}
-
 export function LinkButton({
   href,
   children,
@@ -18,8 +12,9 @@ export function LinkButton({
   children: ReactNode;
   variant?: Variant;
 }) {
+  const cls = variant === "primary" ? "btn btn-primary" : "btn btn-ghost";
   return (
-    <Link href={href} className={classes(variant)}>
+    <Link href={href} className={cls}>
       {children}
     </Link>
   );
@@ -29,15 +24,14 @@ export function Button({
   children,
   variant = "primary",
   type = "button",
-  onClick,
 }: {
   children: ReactNode;
   variant?: Variant;
   type?: "button" | "submit";
-  onClick?: () => void;
 }) {
+  const cls = variant === "primary" ? "btn btn-primary" : "btn btn-ghost";
   return (
-    <button type={type} onClick={onClick} className={classes(variant)}>
+    <button type={type} className={cls}>
       {children}
     </button>
   );

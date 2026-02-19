@@ -4,7 +4,7 @@ import { navJP } from "@/config/nav.jp";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <div data-theme="jp">
+    <div data-theme="jp" className="page-bg">
       <Header brandHref="/jp" items={navJP} right={null} />
       {children}
       <Footer localeBase="/jp" />
